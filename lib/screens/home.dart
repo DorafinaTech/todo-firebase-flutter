@@ -128,7 +128,8 @@ class _HomeState extends State<Home> {
           child: Icon(Icons.add, color: Colors.white),
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
-            Navigator.push(
+
+            Navigator.pop(
                 context, MaterialPageRoute(builder: (context) => AddTask()));
           }),
     );
