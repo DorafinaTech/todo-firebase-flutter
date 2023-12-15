@@ -129,7 +129,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
 
-            Navigator.pop(
+            Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AddTask()));
           }),
     );

@@ -3,11 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_firebase/screens/home.dart';
 
 class AddTask extends StatefulWidget {
   @override
   _AddTaskState createState() => _AddTaskState();
 }
+
 
 class _AddTaskState extends State<AddTask> {
   TextEditingController titleController = TextEditingController();
@@ -72,10 +74,19 @@ class _AddTaskState extends State<AddTask> {
                       'Add Task',
                       style: GoogleFonts.roboto(fontSize: 18),
                     ),
-                    onPressed: () {
-                      addTaskToFirebase();
+                    onPressed: () async {
+                      await addTaskToFirebase();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      );
                     },
-                  ))
+                  ),
+                    // onPressed: () {
+                    //   Home();
+                    //   addTaskToFirebase();
+
+                  ),
             ],
           )),
     );

@@ -7,6 +7,7 @@ class AuthForm extends StatefulWidget {
   @override
   _AuthFormState createState() => _AuthFormState();
 }
+bool _isObscure = true;
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
@@ -116,7 +117,7 @@ class _AuthFormState extends State<AuthForm> {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        obscureText: true,
+                        obscureText: _isObscure,
                         keyboardType: TextInputType.emailAddress,
                         key: ValueKey('password'),
                         validator: (value) {
@@ -129,12 +130,25 @@ class _AuthFormState extends State<AuthForm> {
                           _password = value!;
                         },
                         decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(8.0),
-                                borderSide: new BorderSide()),
-                            labelText: "Enter Password",
-                            labelStyle: GoogleFonts.roboto()),
+                          border: OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(8.0),
+                            borderSide: new BorderSide(),
+                          ),
+                          labelText: "Enter Password",
+                          labelStyle: GoogleFonts.roboto(),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isObscure ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                          ),
+                        ),
                       ),
+
                       SizedBox(height: 10),
                       Container(
                           padding: EdgeInsets.all(5),
